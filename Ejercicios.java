@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Ejercicios {
 
@@ -21,7 +22,14 @@ public class Ejercicios {
         List<Empleado> empleados = Common.getEmpleados();
         List<RegistroTurno> turnos = Common.getTurnos();
 
-        Servicios.empleadoMesPorArea(empleados, turnos).forEach(System.out::println);
+        Map<Area, Optional<Empleado>> empleadosPorArea = Servicios.empleadoMesPorArea(empleados, turnos);
+
+        empleadosPorArea.forEach((area, empleado) -> {
+            if (empleado.isPresent()) {
+                Empleado e = empleado.get();
+                System.out.println(String.format("Área: %s - Empleado del Mes: %s", area, e.nombre()));
+            }
+        });
     }
 
     public static void desgloseDeHorasPorAreaYTipoTurno() {
