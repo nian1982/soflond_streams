@@ -49,6 +49,36 @@ public class Ejercicios {
         });
     }
 
+    public static void detectarTurnosConsecutivosAnormales() {
+        Common.separador();
+        System.out.println("\n4. Detección de Turnos Consecutivos Anormales: \n");
+
+        List<Empleado> empleados = Common.getEmpleados();
+        List<RegistroTurno> turnos = Common.getTurnos();
+
+        List<String> empleadosConTurnosAnormales = Servicios.detectarTurnosConsecutivosAnormales(turnos, empleados);
+        Common.imprimirListas(empleadosConTurnosAnormales);
+    }
+
+    public static void chequeoInconsistenciasDatos() {
+        Common.separador();
+        System.out.println("\n5. Chequeo de Inconsistencias de Datos:\n");
+
+        List<Empleado> empleados = Common.getEmpleados();
+        List<RegistroTurno> turnos = Common.getTurnos();
+        Servicios.chequeoInconsistenciasDatos(empleados, turnos)
+                .forEach(t -> System.out.println("Turnos inconsistentes: " + t));
+    }
+
+    public static void reporteProductividad() {
+        Common.separador();
+        System.out.println("\n6. Reporte de Productividad\n");
+
+        List<Empleado> empleados = Common.getEmpleados();
+        List<RegistroTurno> turnos = Common.getTurnos();
+        Servicios.reporteProductividad(empleados, turnos).forEach(System.out::println);
+    }
+
     public static void auditoriaDeCoberturaMinima() {
         Common.separador();
         System.out.println("\n7. Auditoría de Cobertura Mínima:\n");
@@ -59,6 +89,19 @@ public class Ejercicios {
         List<String> resultados = Servicios.auditoriaCoberturaMinima(empleados, turnos);
 
         Common.imprimirListas(resultados);
+    }
+
+    public static void calculoBonusDisponibilidad() {
+        Common.separador();
+        System.out.println("\n8. Cálculo de Bonus por Disponibilidad:\n");
+
+        List<Empleado> empleados = Common.getEmpleados();
+        List<RegistroTurno> turnos = Common.getTurnos();
+        Map<String, Double> bonus = Servicios.calculoBonusDisponibilidad(empleados, turnos);
+
+        bonus.forEach((id, bono) -> {
+            System.out.println("Empleado ID: " + id + " | Bono: " + String.format("%.2f", bono));
+        });
     }
 
     public static void reporteCostoOperativoPorArea() {

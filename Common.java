@@ -82,6 +82,7 @@ public class Common {
     public static List<RegistroTurno> getTurnos() {
         return List.of(
                 // CARDIOLOGIA
+                new RegistroTurno("E99", LocalDate.of(2024, 10, 1), TipoTurno.NOCHE, 12),
                 new RegistroTurno("E01", LocalDate.of(2024, 10, 1), TipoTurno.NOCHE, 12),
                 new RegistroTurno("E04", LocalDate.of(2024, 10, 1), TipoTurno.GUARDIA, 24),
                 new RegistroTurno("E12", LocalDate.of(2024, 10, 1), TipoTurno.DIA, 8),
